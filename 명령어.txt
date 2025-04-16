@@ -1,0 +1,28 @@
+환경변수 설정
+cd ~/ros_ws 
+source ./install/setup.sh
+
+로봇 모델 확인(34p)
+ros2 launch description model.launch.py use_rviz:=True
+
+ROS 컨트롤러 실행(47p)
+ros2 run teleop controller
+ros2 run teleop teleop_keyboard
+
+LiDAR 실행(39p,65p,99p)
+ros2 launch rf2o_laser_odometry rf2o_laser_odometry.launch.py
+
+맵핑(66p)
+ros2 launch cartographer_custom cartographer.launch.py
+
+cartographer 맵핑 실행(66p)
+ros2 launch cartographer_custom cartographer.launch.py
+
+생성한 맵을 저장(67p)
+ros2 run nav2_map_server map_saver_cli -f ./my_map
+
+생성한 맵 이동(69p)
+mv ~/my_map.* maps/
+
+네비게이션 실행
+ros2 launch navigation navigation.launch.py

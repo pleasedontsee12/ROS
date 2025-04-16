@@ -1,0 +1,546 @@
+Panels:
+  - Class: rviz_common/Displays
+    Help Height: 0 # OCR value
+    Name: Displays
+    Property Tree Widget:
+      Expanded: # Adjusted based on common Nav2 elements
+        - /Global Options1
+        - /TF1
+        - /TF1/Frames1
+        - /Map1 # Global Costmap
+        - /Map2 # Local Costmap
+        - /Map3 # Map Server Map
+        - /Path1 # Global Plan
+        - /Path2 # Local Plan
+        - /Polygon1 # Global Footprint
+        - /Polygon2 # Local Footprint
+        - /PoseArray1 # Particle Cloud (AMCL)
+        - /RobotModel1
+      Splitter Ratio: 0.5833333134651184 # OCR value, might need adjustment
+    Tree Height: 462 # OCR value
+  - Class: rviz_common/Selection
+    Name: Selection
+  - Class: rviz_common/Tool Properties
+    Expanded:
+      - /Publish Point1 # Kept from OCR
+      # Added Nav2 Goal Tool
+      - /Navigation21
+    Name: Tool Properties
+    Splitter Ratio: 0.5886790156364441 # OCR value
+  - Class: rviz_common/Views
+    Expanded:
+      - /Current View1
+    Name: Views
+    Splitter Ratio: 0.5
+  # Added Navigation 2 Panel based on OCR content
+  - Class: nav2_rviz_plugins/Navigation2
+    Name: Navigation 2 # Corrected Class name based on standard Nav2 panel
+    collapsed: false # OCR shows it expanded
+Visualization Manager:
+  Class: ""
+  Displays:
+    - Alpha: 0.5
+      Cell Size: 1
+      Class: rviz_default_plugins/Grid
+      Color: 160; 160; 164
+      Enabled: true
+      Line Style:
+        Line Width: 0.029999999329447746
+        Value: Lines
+      Name: Grid
+      Normal Cell Count: 0
+      Offset:
+        X: 0
+        Y: 0
+        Z: 0
+      Plane: XY
+      Plane Cell Count: 10
+      Reference Frame: <Fixed Frame>
+      Value: true
+    - Alpha: 1
+      Class: rviz_default_plugins/RobotModel
+      Collision Enabled: false
+      Description File: ""
+      Description Source: Topic
+      Description Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /robot_description
+      Enabled: true
+      Links:
+        All Links Enabled: true
+        Expand Joint Details: false
+        Expand Link Details: false
+        Expand Tree: false
+        Link Tree Style: "" # OCR value
+      Name: RobotModel
+      TF Prefix: "" # OCR value
+      Update Interval: 0
+      Value: true
+      Visual Enabled: true
+    - Class: rviz_default_plugins/TF
+      Enabled: true
+      Frame Timeout: 15
+      Frames:
+        All Enabled: false # OCR value
+        # Add frames relevant to Nav2 if needed for debugging
+        # e.g., map, odom, base_link, base_footprint
+      Marker Scale: 1
+      Name: TF
+      Show Arrows: true
+      Show Axes: true
+      Show Names: false # Changed from OCR for less clutter
+      Tree: {} # OCR shows empty tree
+      Update Interval: 0
+      Value: true
+    - Alpha: 1 # LaserScan from OCR
+      Autocompute Intensity Bounds: true
+      Autocompute Value Bounds:
+        Max Value: 10
+        Min Value: -10
+        Value: true
+      Axis: Z
+      Channel Name: intensity
+      Class: rviz_default_plugins/LaserScan
+      Color: 255; 255; 255
+      Color Transformer: Intensity
+      Decay Time: 0
+      Enabled: true # Keep LaserScan enabled
+      Invert Rainbow: false
+      Max Color: 255; 255; 255
+      Max Intensity: 0 # OCR value, might need adjustment
+      Min Color: 0; 0; 0
+      Min Intensity: 0 # OCR value
+      Name: LaserScan
+      Position Transformer: XYZ
+      Selectable: true
+      Size (Pixels): 3
+      Size (m): 0.009999999776482582 # OCR value
+      Style: Flat Squares # OCR style
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Best Effort
+        Value: /scan
+      Use Fixed Frame: true
+      Use rainbow: true
+      Value: true
+    - Alpha: 1 # PointCloud2 (Bumper Hit) - Kept from OCR, disable if not used
+      Autocompute Intensity Bounds: true
+      Autocompute Value Bounds:
+        Max Value: 10
+        Min Value: -10
+        Value: true
+      Axis: Z
+      Channel Name: intensity
+      Class: rviz_default_plugins/PointCloud2
+      Color: 255; 255; 255
+      Color Transformer: "" # OCR value
+      Decay Time: 0
+      Enabled: false # Disabled by default, enable if bumper points are published
+      Invert Rainbow: false
+      Max Color: 255; 255; 255
+      Max Intensity: 4096
+      Min Color: 0; 0; 0
+      Min Intensity: 0
+      Name: Bumper Hit
+      Position Transformer: "" # OCR value
+      Selectable: true
+      Size (Pixels): 3
+      Size (m): 0.07999999821186066 # OCR value
+      Style: Spheres # OCR style
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Best Effort
+        Value: /mobile_base/sensors/bumper_pointcloud # OCR topic
+      Use Fixed Frame: true
+      Use rainbow: true
+      Value: true
+    - Alpha: 1 # Map from Map Server
+      Class: rviz_default_plugins/Map
+      Color Scheme: map # Standard map scheme
+      Draw Behind: false # OCR value was true, changed to false for clarity
+      Enabled: true
+      Name: Map # Renamed for clarity (was Map Topic in OCR)
+      Topic:
+        Depth: 1 # Changed from OCR for static map
+        Durability Policy: Transient Local # Use Transient Local for static map
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /map
+      Update Topic: # Not typically needed for static map, kept from OCR
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /map_updates
+      Use Timestamp: false
+      Value: true
+    - Alpha: 1 # Particle Cloud (AMCL Pose Array)
+      Arrow Length: 0.019999999552965164 # OCR value
+      Axes Length: 0.30000001192092896 # OCR value
+      Axes Radius: 0.009999999776482582 # OCR value
+      Class: rviz_default_plugins/PoseArray
+      Color: 0; 180; 0 # OCR value (Green)
+      Enabled: true
+      Head Length: 0.07000000029802322 # OCR value
+      Head Radius: 0.029999999329447746 # OCR value
+      Name: Amcl Particle Swarm # Renamed for clarity
+      Shaft Length: 0.23000000417232513 # OCR value
+      Shaft Radius: 0.009999999776482582 # OCR value
+      Shape: Arrow (Flat) # OCR value
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Best Effort # Use Best Effort for frequently updated poses
+        Value: /particlecloud # Standard AMCL topic
+      Value: true
+    - Alpha: 0.30000001192092896 # Global Costmap
+      Class: rviz_default_plugins/Map
+      Color Scheme: costmap # Costmap color scheme
+      Draw Behind: false
+      Enabled: true
+      Name: Global Costmap
+      Topic:
+        Depth: 1 # OCR value
+        Durability Policy: Transient Local # OCR value
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /global_costmap/costmap # Standard Nav2 topic
+      Update Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /global_costmap/costmap_updates # Standard Nav2 topic
+      Use Timestamp: false
+      Value: true
+    - Alpha: 0.30000001192092896 # Downsampled Global Costmap (Optional) - Kept from OCR
+      Class: rviz_default_plugins/Map
+      Color Scheme: costmap
+      Draw Behind: false
+      Enabled: false # Disabled by default
+      Name: Downsampled Costmap
+      Topic:
+        Depth: 1
+        Durability Policy: Transient Local
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /downsampled_costmap # OCR topic
+      Update Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /downsampled_costmap_updates # OCR topic
+      Use Timestamp: false
+      Value: true
+    - Alpha: 1 # Global Plan Path
+      Buffer Length: 1
+      Class: rviz_default_plugins/Path
+      Color: 255; 0; 0 # Red color for global plan
+      Enabled: true
+      Head Diameter: 0.019999999552965164 # OCR value
+      Head Length: 0.019999999552965164 # OCR value
+      Length: 0.30000001192092896 # OCR value
+      Line Style: Lines # OCR value
+      Line Width: 0.029999999329447746 # OCR value
+      Name: Path # Renamed to Global Plan
+      Offset:
+        X: 0
+        Y: 0
+        Z: 0
+      Pose Color: 255; 85; 255 # OCR value
+      Pose Style: Arrows # OCR value
+      Radius: 0.029999999329447746 # OCR value
+      Shaft Diameter: 0.004999999888241291 # OCR value
+      Shaft Length: 0.019999999552965164 # OCR value
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /plan # Standard Nav2 global plan topic
+      Value: true
+    - Alpha: 1 # Global Costmap Voxel Grid (Optional) - Kept from OCR
+      Autocompute Intensity Bounds: true
+      Autocompute Value Bounds: # Inherited values, likely not relevant for voxel grid
+        Max Value: 10
+        Min Value: -10
+        Value: true
+      Axis: Z
+      Channel Name: intensity
+      Class: rviz_default_plugins/PointCloud
+      Color: 125; 125; 125 # Grey color
+      Color Transformer: FlatColor
+      Decay Time: 0
+      Enabled: false # Disabled by default
+      Invert Rainbow: false
+      Max Color: 255; 255; 255
+      Max Intensity: 4096
+      Min Color: 0; 0; 0
+      Min Intensity: 0
+      Name: VoxelGrid # Global Costmap Voxels
+      Position Transformer: XYZ
+      Selectable: true
+      Size (Pixels): 3
+      Size (m): 0.05000000074505806 # OCR value
+      Style: Boxes # OCR value
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /global_costmap/voxel_marked_cloud # OCR topic
+      Use Fixed Frame: true
+      Use rainbow: true
+      Value: true
+    - Alpha: 1 # Global Costmap Footprint Polygon
+      Class: rviz_default_plugins/Polygon
+      Color: 25; 255; 0 # Green color
+      Enabled: false # Disabled by default, useful for debugging footprint
+      Name: Polygon # Renamed Global Footprint
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /global_costmap/published_footprint # Standard Nav2 topic
+      Value: false # Disabled in OCR
+    - Class: rviz_common/Group # Group for Local Planner Visualizations
+      Displays:
+      - Alpha: 0.699999988079071 # Local Costmap
+        Class: rviz_default_plugins/Map
+        Color Scheme: costmap
+        Draw Behind: false
+        Enabled: true
+        Name: Local Costmap
+        Topic:
+          Depth: 1
+          Durability Policy: Transient Local
+          History Policy: Keep Last
+          Reliability Policy: Reliable
+          Value: /local_costmap/costmap # Standard Nav2 topic
+        Update Topic:
+          Depth: 5
+          Durability Policy: Volatile
+          History Policy: Keep Last
+          Reliability Policy: Reliable
+          Value: /local_costmap/costmap_updates # Standard Nav2 topic
+        Use Timestamp: false
+        Value: true
+      - Alpha: 1 # Local Plan Path
+        Buffer Length: 1
+        Class: rviz_default_plugins/Path
+        Color: 0; 12; 255 # Blue color for local plan
+        Enabled: true
+        Head Diameter: 0.30000001192092896 # OCR value
+        Head Length: 0.20000000298023224 # OCR value
+        Length: 0.30000001192092896 # OCR value
+        Line Style: Lines # OCR value
+        Line Width: 0.029999999329447746 # OCR value
+        Name: Local Plan
+        Offset:
+          X: 0
+          Y: 0
+          Z: 0
+        Pose Color: 255; 85; 255
+        Pose Style: None # OCR value
+        Radius: 0.029999999329447746 # OCR value
+        Shaft Diameter: 0.10000000149011612 # OCR value
+        Shaft Length: 0.10000000149011612 # OCR value
+        Topic:
+          Depth: 5
+          Durability Policy: Volatile
+          History Policy: Keep Last
+          Reliability Policy: Reliable
+          Value: /local_plan # DWB specific, might be /plan for others
+        Value: true
+      - Alpha: 1 # Local Costmap Footprint Polygon
+        Class: rviz_default_plugins/Polygon
+        Color: 25; 255; 0 # Green color
+        Enabled: true # Enabled to show local footprint
+        Name: Polygon # Renamed Local Footprint
+        Topic:
+          Depth: 5
+          Durability Policy: Volatile
+          History Policy: Keep Last
+          Reliability Policy: Reliable
+          Value: /local_costmap/published_footprint # Standard Nav2 topic
+        Value: true # Enabled in OCR
+      - Alpha: 1 # Local Costmap Voxel Grid (Optional) - Kept from OCR
+        Autocompute Intensity Bounds: true
+        Autocompute Value Bounds:
+          Max Value: 10
+          Min Value: -10
+          Value: true
+        Axis: Z
+        Channel Name: intensity
+        Class: rviz_default_plugins/PointCloud
+        Color: 255; 255; 255 # White color
+        Color Transformer: RGB8 # OCR value
+        Decay Time: 0
+        Enabled: false # Disabled by default
+        Invert Rainbow: false
+        Max Color: 255; 255; 255
+        Max Intensity: 4096
+        Min Color: 0; 0; 0
+        Min Intensity: 0
+        Name: VoxelGrid # Local Costmap Voxels
+        Position Transformer: XYZ
+        Selectable: true
+        Size (Pixels): 3
+        Size (m): 0.009999999776482582 # OCR value
+        Style: Flat Squares # OCR value
+        Topic:
+          Depth: 5
+          Durability Policy: Volatile
+          History Policy: Keep Last
+          Reliability Policy: Reliable
+          Value: /local_costmap/voxel_marked_cloud # OCR topic
+        Use Fixed Frame: true
+        Use rainbow: true
+        Value: true
+      Enabled: true
+      Name: Local Planner # Group name
+    - Class: rviz_common/Group # Group for additional visualizations (Realsense) - Kept from OCR
+      Displays:
+      - Class: rviz_default_plugins/Image # Realsense Camera Image
+        Enabled: false # Disabled by default
+        Max Value: 1
+        Median window: 5
+        Min Value: 0
+        Name: RealsenseCamera
+        Normalize Range: true
+        Topic:
+          Depth: 5
+          Durability Policy: Volatile
+          History Policy: Keep Last
+          Reliability Policy: Reliable
+          Value: /intel_realsense_r200_depth/image_raw # OCR topic
+        Value: true
+      - Alpha: 1 # Realsense Depth Image PointCloud
+        Autocompute Intensity Bounds: true
+        Autocompute Value Bounds:
+          Max Value: 10
+          Min Value: -10
+          Value: true
+        Axis: Z
+        Channel Name: intensity
+        Class: rviz_default_plugins/PointCloud2
+        Color: 255; 255; 255
+        Color Transformer: RGB8
+        Decay Time: 0
+        Enabled: false # Disabled by default
+        Invert Rainbow: false
+        Max Color: 255; 255; 255
+        Max Intensity: 4096
+        Min Color: 0; 0; 0
+        Min Intensity: 0
+        Name: RealsenseDepthImage
+        Position Transformer: XYZ
+        Selectable: true
+        Size (Pixels): 3
+        Size (m): 0.009999999776482582 # OCR value
+        Style: Flat Squares
+        Topic:
+          Depth: 5
+          Durability Policy: Volatile
+          History Policy: Keep Last
+          Reliability Policy: Reliable
+          Value: /intel_realsense_r200_depth/points # OCR topic
+        Use Fixed Frame: true
+        Use rainbow: true
+        Value: true
+      Enabled: true
+      Name: Controller # OCR Group Name
+    - Class: rviz_default_plugins/MarkerArray # Waypoints - Kept from OCR
+      Enabled: true # Enabled in OCR
+      Marker Topic: /waypoints # OCR topic
+      Name: MarkerArray # Renamed Waypoints
+      Namespaces: {}
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+      Value: true # Enabled in OCR
+  Enabled: true
+  Global Options:
+    Background Color: 48; 48; 48
+    Fixed Frame: map
+    Frame Rate: 30
+  Name: root
+  Tools:
+    - Class: rviz_default_plugins/MoveCamera
+    # Removed Select, FocusCamera, Measure based on common Nav2 setups
+    # Kept PublishPoint
+    - Class: rviz_default_plugins/PublishPoint
+      Single click: true
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /clicked_point
+    - Class: rviz_default_plugins/SetInitialPose # Standard initial pose tool
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /initialpose
+    # Added Nav2 Goal Tool instead of ROS 1 SetGoal
+    - Class: nav2_rviz_plugins/GoalTool
+      Name: Navigation2 Goal # Standard Nav2 goal tool
+      Topic: # Default goal topic for Nav2
+         Value: /goal_pose
+  Transformation:
+    Current:
+      Class: rviz_default_plugins/TF
+      Value: true
+  Value: true
+  Views:
+    Current: # TopDownOrtho view is often useful for Nav2
+      Class: rviz_default_plugins/TopDownOrtho
+      Angle: -1.7300000190734863 # OCR value
+      Enable Stereo Rendering:
+        Stereo Eye Separation: 0.05999999865889549 # OCR value
+        Stereo Focal Distance: 1
+        Swap Stereo Eyes: false
+        Value: false
+      Invert Z Axis: false
+      Name: Current View
+      Near Clip Distance: 0.009999999776482582 # OCR value
+      Scale: 127.88431549072266 # OCR value
+      Target Frame: <Fixed Frame>
+      Value: TopDownOrtho (rviz_default_plugins)
+      X: 1.1334424018859863 # OCR value
+      Y: -0.1800183653831482 # OCR value
+    Saved: ~
+Window Geometry:
+  Displays:
+    collapsed: false
+  Height: 1262 # OCR value
+  Hide Left Dock: false
+  Hide Right Dock: true
+  QMainWindow State: 000000ff00000000fd0000000400000000000002960000041bfc020000000afb0000001200530065006c0065006300740069006f006e00000001e10000009b0000011400fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001df00000185000000a3fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb000000100044006900730070006c006100790073010000009e0000025f0000025f00fffffffb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261fb00000018004e0061007600690067006100740069006f006e002000320100000311000001a8000001a800fffffffb0000001e005200650061006c00730065006e0073006500430061006d00650072006100000002c6000000c10000006900ffffff000000010000010f0000034afc0200000003fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000000a00560069006500770073000000003d0000034a000001c400fffffffb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000490000000a9fc0100000001fb0000000a00560069006500770073030000004e00000080000002e10000019700000003000004420000003efc0100000002fb0000000800540069006d00650100000000000004420000000000000000fb0000000800540069006d006501000000000000045000000000000000000000004d60000041b00000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  Navigation 2: # Corrected Name based on standard Nav2 panel
+    collapsed: false
+  RealsenseCamera: # Assuming this group corresponds to the "Controller" group in OCR
+    collapsed: false
+  Selection:
+    collapsed: false
+  Tool Properties:
+    collapsed: false
+  Views:
+    collapsed: true
+  Width: 1920
+  X: 0
+  Y: 0

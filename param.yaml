@@ -1,0 +1,357 @@
+# AMCL Node Parameters (Localization)
+amcl:
+  ros__parameters:
+    use_sim_time: false # 실제 로봇 사용 시 false
+    set_initial_pose: true
+    initial_pose:
+      x: 0.0
+      y: 0.0
+      yaw: 0.0
+    # Particle Filter Parameters
+    alpha1: 0.2 # odom_rot_noise_from_rot
+    alpha2: 0.2 # odom_rot_noise_from_trans
+    alpha3: 0.2 # odom_trans_noise_from_trans
+    alpha4: 0.2 # odom_trans_noise_from_rot
+    alpha5: 0.2 # Not typically used in diff_drive model
+    base_frame_id: "base_footprint" # 로봇 발자국 프레임
+    beam_skip_distance: 0.5
+    beam_skip_error_threshold: 0.9
+    beam_skip_threshold: 0.3
+    do_beamskip: false
+    global_frame_id: "map" # 전역 지도 프레임
+    lambda_short: 0.1
+    laser_likelihood_max_dist: 2.0
+    laser_max_range: 100.0 # 필요시 LiDAR 최대 거리에 맞게 수정
+    laser_min_range: -1.0  # Usually 0.0 or slightly above min LiDAR range
+    laser_model_type: "likelihood_field" # 또는 "beam"
+    max_beams: 60 # 사용하는 레이저 빔 수 (다운샘플링)
+    max_particles: 2000
+    min_particles: 500
+    odom_frame_id: "odom" # 오도메트리 프레임
+    pf_err: 0.05
+    pf_z: 0.99
+    recovery_alpha_fast: 0.0
+    recovery_alpha_slow: 0.0
+    resample_interval: 1
+    robot_model_type: "differential" # 또는 "omni"
+    save_pose_rate: 0.5 # 초당 포즈 저장 빈도 (<=0 이면 비활성화)
+    sigma_hit: 0.2
+    tf_broadcast: true # AMCL이 map->odom 변환 발행 여부
+    transform_tolerance: 1.0 # TF 변환 대기 시간 (초)
+    update_min_a: 0.2 # 업데이트 전 최소 회전 (라디안)
+    update_min_d: 0.25 # 업데이트 전 최소 이동 (미터)
+    z_hit: 0.5
+    z_max: 0.05
+    z_rand: 0.5
+    z_short: 0.05
+
+# AMCL Lifecycle Manager Client Nodes (Usually no need to change)
+amcl_map_client:
+  ros__parameters:
+    use_sim_time: false
+amcl_rclcpp_node:
+  ros__parameters:
+    use_sim_time: false
+
+# Behavior Tree Navigator Node Parameters
+bt_navigator:
+  ros__parameters:
+    use_sim_time: false
+    global_frame: "map"
+    robot_base_frame: "base_link" # 로봇 베이스 프레임
+    odom_topic: "/odom" # 사용하는 오도메트리 토픽
+    default_bt_xml_filename: "navigate_w_replanning_and_recovery.xml" # Nav2 기본 BT
+    plugin_lib_names:
+      - nav2_compute_path_to_pose_action_bt_node
+      - nav2_follow_path_action_bt_node
+      - nav2_back_up_action_bt_node
+      - nav2_spin_action_bt_node
+      - nav2_wait_action_bt_node
+      - nav2_clear_costmap_service_bt_node
+      - nav2_is_stuck_condition_bt_node
+      - nav2_goal_reached_condition_bt_node
+      - nav2_goal_updated_condition_bt_node
+      - nav2_initial_pose_received_condition_bt_node
+      - nav2_reinitialize_global_localization_service_bt_node
+      - nav2_rate_controller_bt_node
+      - nav2_distance_controller_bt_node
+      - nav2_speed_controller_bt_node
+      - nav2_recovery_node_bt_node
+      - nav2_pipeline_sequence_bt_node
+      - nav2_round_robin_node_bt_node
+      - nav2_transform_available_condition_bt_node
+      - nav2_time_expired_condition_bt_node
+      - nav2_distance_traveled_condition_bt_node
+
+# BT Navigator Lifecycle Manager Client Node
+bt_navigator_rclcpp_node:
+  ros__parameters:
+    use_sim_time: false
+
+# Controller Server Node Parameters (Local Planner - DWB)
+controller_server:
+  ros__parameters:
+    use_sim_time: false
+    controller_frequency: 5.0 # OCR 값 (필요시 낮춤, 예: 10.0 or 20.0)
+    min_x_velocity_threshold: 0.001
+    min_y_velocity_threshold: 0.5 # 2D 로봇은 보통 0.0
+    min_theta_velocity_threshold: 0.001
+    controller_plugins: ["FollowPath"] # 사용할 컨트롤러 플러그인 이름
+
+    # DWB Controller Plugin Parameters
+    FollowPath:
+      plugin: "dwb_core::DWBLocalPlanner"
+      debug_trajectory_details: true # 디버깅 시 유용
+      # Robot kinematics limits
+      min_vel_x: 0.0
+      min_vel_y: 0.0 # 2D 로봇
+      max_vel_x: 0.26 # 로봇 최대 선속도 (m/s) - 로봇 사양에 맞게 수정
+      max_vel_y: 0.0 # 2D 로봇
+      max_vel_theta: 1.0 # 로봇 최대 각속도 (rad/s) - 로봇 사양에 맞게 수정
+      min_speed_xy: 0.0
+      max_speed_xy: 0.26 # 최대 선속도와 일치 또는 약간 낮게
+      min_speed_theta: 0.0
+      # Acceleration limits
+      acc_lim_x: 2.5
+      acc_lim_y: 0.0 # 2D 로봇
+      acc_lim_theta: 3.2
+      decel_lim_x: -2.5
+      decel_lim_y: 0.0 # 2D 로봇
+      decel_lim_theta: -3.2
+      # Velocity samples counts
+      vx_samples: 20
+      vy_samples: 0 # 2D 로봇
+      vtheta_samples: 40
+      # Trajectory Simulation Time
+      sim_time: 1.5 # 몇 초 앞의 경로를 예측할지 (초)
+      # Granularity for grid search
+      linear_granularity: 0.05
+      angular_granularity: 0.025
+      # Other DWB parameters
+      transform_tolerance: 0.2
+      xy_goal_tolerance: 0.05 # 목표 도달 허용 오차 (m)
+      trans_stopped_velocity: 0.25 # 정지 상태로 간주할 속도 임계값
+      short_circuit_trajectory_evaluation: true # 유효하지 않은 경로 조기 종료
+      stateful: true
+      # Critic plugin names (Scoring functions)
+      critics: ["RotateToGoal", "Oscillation", "BaseObstacle", "GoalAlign", "PathAlign", "PathDist", "GoalDist"]
+      # Critic parameters (adjust weights/scales based on performance)
+      BaseObstacle.scale: 0.02
+      PathAlign.scale: 32.0
+      PathAlign.forward_point_distance: 0.1
+      GoalAlign.scale: 24.0
+      GoalAlign.forward_point_distance: 0.1
+      PathDist.scale: 32.0
+      GoalDist.scale: 24.0
+      RotateToGoal.scale: 32.0
+      RotateToGoal.slowing_factor: 5.0
+      RotateToGoal.lookahead_time: -1.0 # 음수: 동적 계산
+
+# Controller Server Lifecycle Manager Client Node
+controller_server_rclcpp_node:
+  ros__parameters:
+    use_sim_time: false
+
+# Local Costmap Parameters
+local_costmap:
+  local_costmap: # Node namespace and name duplication is standard here
+    ros__parameters:
+      use_sim_time: false
+      update_frequency: 5.0 # 코스트맵 업데이트 주기 (Hz)
+      publish_frequency: 2.0 # 코스트맵 발행 주기 (Hz)
+      global_frame: "odom" # 로컬 코스트맵은 오돔 프레임 기준
+      robot_base_frame: "base_link" # 로봇 베이스 프레임
+      rolling_window: true # 로봇을 따라 코스트맵 이동
+      width: 3 # 코스트맵 너비 (미터)
+      height: 3 # 코스트맵 높이 (미터)
+      resolution: 0.05 # 코스트맵 해상도 (미터/셀)
+      robot_radius: 0.22 # 로봇 반경 (미터) - 실제 로봇 크기에 맞게 수정
+      plugins: ["obstacle_layer", "voxel_layer", "inflation_layer"] # 사용할 레이어 목록
+      # Layer configurations
+      inflation_layer:
+        plugin: "nav2_costmap_2d::InflationLayer"
+        cost_scaling_factor: 3.0 # 팽창 비용 감소율 (높을수록 급격히 감소)
+        inflation_radius: 1.0 # 로봇 반경 주위 팽창 거리 (미터) - 안전 마진
+        enabled: true
+      obstacle_layer:
+        plugin: "nav2_costmap_2d::ObstacleLayer"
+        enabled: true
+        observation_sources: scan # 사용할 센서 소스 이름
+        scan: # 센서 소스 'scan'의 설정
+          topic: /scan # LiDAR 토픽 이름
+          max_obstacle_height: 2.0 # 장애물로 간주할 최대 높이
+          clearing: true # 센서 데이터로 공간 비우기 활성화
+          marking: true # 센서 데이터로 장애물 표시 활성화
+          data_type: "LaserScan"
+          raytrace_max_range: 3.0 # 공간 비우기를 위한 최대 광선 추적 거리
+          raytrace_min_range: 0.0
+          obstacle_max_range: 2.5 # 장애물 탐지를 위한 최대 거리
+          obstacle_min_range: 0.0
+      voxel_layer: # 3D 센서 데이터 처리 (예: Realsense)
+        plugin: "nav2_costmap_2d::VoxelLayer"
+        enabled: true # Realsense 등 사용 시 true
+        publish_voxel_map: true
+        origin_z: 0.0
+        z_resolution: 0.05
+        z_voxels: 16
+        max_obstacle_height: 2.0
+        mark_threshold: 0
+        observation_sources: pointcloud # 사용할 센서 소스 이름
+        pointcloud: # 센서 소스 'pointcloud'의 설정
+          topic: /intel_realsense_r200_depth/points # PointCloud2 토픽 이름 (OCR 기준)
+          max_obstacle_height: 2.0
+          clearing: true
+          marking: true
+          data_type: "PointCloud2"
+          min_obstacle_height: 0.0 # Need min height for point clouds
+      # static_layer 는 로컬 코스트맵에선 보통 사용 안 함 (OCR엔 있었음)
+      static_layer:
+         plugin: "nav2_costmap_2d::StaticLayer"
+         map_subscribe_transient_local: True # OCR value
+         enabled: false # 로컬 코스트맵에서는 비활성화
+
+      always_send_full_costmap: True # 디버깅 시 유용
+
+# Local Costmap Lifecycle Manager Client Nodes
+local_costmap_client:
+  ros__parameters:
+    use_sim_time: false
+local_costmap_rclcpp_node:
+  ros__parameters:
+    use_sim_time: false
+
+# Global Costmap Parameters
+global_costmap:
+  global_costmap: # Node namespace and name duplication is standard here
+    ros__parameters:
+      use_sim_time: false
+      update_frequency: 1.0 # 전역 코스트맵은 덜 자주 업데이트
+      publish_frequency: 1.0 # 전역 코스트맵 발행 주기
+      global_frame: "map" # 전역 코스트맵은 맵 프레임 기준
+      robot_base_frame: "base_link"
+      # robot_radius: 0.1 # 로봇 반경 (OCR 값) - 로컬과 일치시키거나 다르게 설정 가능
+      resolution: 0.05 # 지도 해상도와 일치
+      track_unknown_space: true # true 권장
+      plugins: ["static_layer", "obstacle_layer", "voxel_layer", "inflation_layer"]
+      # Layer configurations
+      obstacle_layer:
+        plugin: "nav2_costmap_2d::ObstacleLayer"
+        enabled: true
+        observation_sources: scan
+        scan:
+          topic: /scan
+          max_obstacle_height: 2.0
+          clearing: true
+          marking: true
+          data_type: "LaserScan"
+          # Global costmap obstacle layer params might differ slightly
+          raytrace_max_range: 3.0
+          raytrace_min_range: 0.0
+          obstacle_max_range: 2.5
+          obstacle_min_range: 0.0
+      voxel_layer: # Use if 3D sensors contribute to global map obstacles
+        plugin: "nav2_costmap_2d::VoxelLayer"
+        enabled: true # Realsense 등 사용 시 true
+        publish_voxel_map: true # Usually false for global costmap unless debugging
+        origin_z: 0.0
+        z_resolution: 0.05
+        z_voxels: 16
+        max_obstacle_height: 2.0
+        mark_threshold: 0
+        observation_sources: pointcloud
+        pointcloud:
+          topic: /intel_realsense_r200_depth/points # OCR 기준
+          max_obstacle_height: 2.0
+          clearing: true
+          marking: true
+          data_type: "PointCloud2"
+          min_obstacle_height: 0.0
+      static_layer: # Loads the static map from Map Server
+        plugin: "nav2_costmap_2d::StaticLayer"
+        map_subscribe_transient_local: True # Get map updates reliably
+        enabled: true
+      inflation_layer:
+        plugin: "nav2_costmap_2d::InflationLayer"
+        cost_scaling_factor: 1.0 # OCR 값 (보통 3.0 정도 사용)
+        inflation_radius: 0.55 # OCR 값 (로컬보다 작거나 같게 설정)
+        enabled: true
+
+      always_send_full_costmap: True
+
+# Global Costmap Lifecycle Manager Client Nodes
+global_costmap_client:
+  ros__parameters:
+    use_sim_time: false
+global_costmap_rclcpp_node:
+  ros__parameters:
+    use_sim_time: false
+
+# Map Server Node Parameters
+map_server:
+  ros__parameters:
+    use_sim_time: false
+    # yaml_filename: "~/ros_ws/src/navigation/maps/my_map.yaml" # 경로 직접 지정 또는 launch 파일에서 전달
+    # Use the value passed from the launch file instead of hardcoding here
+    # frame_id: "map" # Default is 'map'
+
+# Map Saver Node Parameters (for saving maps)
+map_saver:
+  ros__parameters:
+    use_sim_time: false
+    save_map_timeout: 5000 # milliseconds -> 5 seconds (OCR value)
+    free_thresh_default: 0.25 # OCR 값 (ROS 1 기본값 0.196)
+    occupied_thresh_default: 0.65 # OCR 값 (ROS 1 기본값 0.65)
+    # map_topic: "map" # Default is 'map'
+
+# Planner Server Node Parameters (Global Planner - NavFn)
+planner_server:
+  ros__parameters:
+    use_sim_time: false
+    expected_planner_frequency: 20.0 # OCR 값 (보통 -1.0: 비활성화, 또는 낮은 값)
+    planner_plugins: ["GridBased"] # 사용할 전역 플래너 목록
+
+    GridBased: # NavFn Planner Plugin Parameters
+      plugin: "nav2_navfn_planner/NavfnPlanner" # 표준 NavFn 플러그인
+      tolerance: 0.5 # 목표점 도달 허용 오차 (미터)
+      use_astar: false # A* 대신 Dijkstra 사용
+      allow_unknown: true # 알 수 없는 영역 통과 허용 여부
+
+# Planner Server Lifecycle Manager Client Node
+planner_server_rclcpp_node:
+  ros__parameters:
+    use_sim_time: false
+
+# Recoveries Server Node Parameters
+recoveries_server:
+  ros__parameters:
+    use_sim_time: false
+    costmap_topic: "local_costmap/costmap_raw" # 로컬 코스트맵 원본 토픽
+    footprint_topic: "local_costmap/published_footprint" # 로컬 풋프린트 토픽
+    cycle_frequency: 10.0 # 복구 행동 시도 주기 (Hz)
+    recovery_plugins: ["spin", "backup", "wait"] # 사용할 복구 행동 목록
+
+    # Recovery Plugin Parameters (Type definitions)
+    spin:
+      plugin: "nav2_recoveries/Spin"
+    backup:
+      plugin: "nav2_recoveries/BackUp"
+    wait:
+      plugin: "nav2_recoveries/Wait"
+
+    # General Recovery Parameters (moved from under wait in OCR)
+    global_frame: "odom" # 복구 행동 시 사용할 프레임
+    robot_base_frame: "base_link"
+    transform_timeout: 0.1
+    simulate_ahead_time: 2.0
+    max_rotational_vel: 1.0 # 복구 행동 시 최대 각속도
+    min_rotational_vel: 0.4 # 복구 행동 시 최소 각속도
+    rotational_acc_lim: 3.2
+
+# Robot State Publisher (Often launched separately, but included in OCR params)
+# This assumes a robot_state_publisher node is managed by Nav2's lifecycle manager
+# which is not standard. Usually, it runs independently.
+# If you launch robot_state_publisher elsewhere, remove this section.
+robot_state_publisher:
+  ros__parameters:
+    use_sim_time: false
+    # robot_description: URDF content (usually loaded via Command in launch file)

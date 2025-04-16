@@ -1,0 +1,383 @@
+Panels:
+  - Class: rviz_common/Displays
+    Help Height: 191
+    Name: Displays
+    Property Tree Widget:
+      Expanded:
+        - /Global Options1
+        - /Status1
+        - /TF1
+        - /TF1/Frames1
+        - /LaserScan1
+        - /Odometry1
+        - /Map1
+        - /PointCloud21
+        - /MarkerArray1 # Trajectories
+        - /MarkerArray2 # Constraints
+        - /MarkerArray3 # Landmark Poses
+      Splitter Ratio: 0.5794117450714111
+    Tree Height: 524
+  - Class: rviz_common/Selection
+    Name: Selection
+  - Class: rviz_common/Tool Properties
+    Expanded:
+      - /Publish Point1
+      - /2D Pose Estimate1
+    Name: Tool Properties
+    Splitter Ratio: 0.5886790156364441 # Note: OCR value was 0.5886790156364441, using it here
+  - Class: rviz_common/Views
+    Expanded:
+      - /Current View1
+    Name: Views
+    Splitter Ratio: 0.5
+Visualization Manager:
+  Class: ""
+  Displays:
+    - Alpha: 0.5
+      Cell Size: 1
+      Class: rviz_default_plugins/Grid
+      Color: 160; 160; 164
+      Enabled: true
+      Line Style:
+        Line Width: 0.029999999329447746
+        Value: Lines
+      Name: Grid
+      Normal Cell Count: 0
+      Offset:
+        X: 0
+        Y: 0
+        Z: 0
+      Plane: XY
+      Plane Cell Count: 10
+      Reference Frame: <Fixed Frame>
+      Value: true
+    - Alpha: 1
+      Class: rviz_default_plugins/RobotModel
+      Collision Enabled: false
+      Description File: ""
+      Description Source: Topic
+      Description Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /robot_description # Standard topic name
+      Enabled: true # Enabled to show the robot model
+      Links:
+        All Links Enabled: true
+        Expand Joint Details: false
+        Expand Link Details: false
+        Expand Tree: false
+        Link Tree Style: Links in Alphabetic Order
+        back_wheels:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        base_footprint:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        base_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        front_wheels:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        laser:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        upper_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+      Name: RobotModel
+      TF Prefix: ""
+      Update Interval: 0
+      Value: true
+      Visual Enabled: true
+    - Class: rviz_default_plugins/TF
+      Enabled: true # Keep TF enabled to see frames
+      Frame Timeout: 15
+      Frames:
+        All Enabled: false # Show only specific frames in the tree for clarity
+        back_wheels:
+          Value: false # Disabled in OCR
+        base_footprint:
+          Value: true # Enabled in OCR
+        base_link:
+          Value: false # Disabled in OCR
+        front_wheels:
+          Value: false # Disabled in OCR
+        laser:
+          Value: false # Disabled in OCR
+        map:
+          Value: false # Disabled in OCR
+        odom:
+          Value: false # Disabled in OCR
+        upper_link:
+          Value: false # Disabled in OCR
+      Marker Scale: 1
+      Name: TF
+      Show Arrows: true
+      Show Axes: true
+      Show Names: true
+      Tree: # Reconstructed based on common structure and OCR hints
+        map:
+          odom:
+            base_footprint:
+              base_link:
+                back_wheels: {}
+                front_wheels: {}
+                upper_link:
+                  laser: {}
+      Update Interval: 0
+      Value: true
+    - Alpha: 1 # LaserScan specific alpha
+      Autocompute Intensity Bounds: true
+      Autocompute Value Bounds:
+        Max Value: 10 # OCR value
+        Min Value: -10 # OCR value
+        Value: true
+      Axis: Z
+      Channel Name: intensity
+      Class: rviz_default_plugins/LaserScan
+      Color: 255; 255; 255 # White color
+      Color Transformer: Intensity # Color based on intensity
+      Decay Time: 0
+      Enabled: true
+      Invert Rainbow: false
+      Max Color: 255; 255; 255
+      Max Intensity: 47 # OCR value
+      Min Color: 0; 0; 0
+      Min Intensity: 47 # OCR value (Note: Min and Max are the same in OCR, check if intended)
+      Name: LaserScan
+      Position Transformer: XYZ # Default
+      Selectable: true
+      Size (Pixels): 3
+      Size (m): 0.019999999552965164 # OCR value
+      Style: Points # Use Points style for scan
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Best Effort # Use Best Effort for sensor data
+        Value: /scan # Standard topic name
+      Use Fixed Frame: true
+      Use rainbow: true
+      Value: true
+    - Angle Tolerance: 0.10000000149011612 # OCR value
+      Class: rviz_default_plugins/Odometry
+      Color: 255; 255; 127 # Yellowish color
+      Covariance:
+        Orientation:
+          Alpha: 0.5
+          Color Style: Unique # Or use Fixed Color if preferred
+          Frame: Local
+          Offset: 1 # Should likely be 0? Check rendering
+          Scale: 1
+          Value: true # Enable orientation covariance visualization
+        Position:
+          Alpha: 0.30000001192092896 # OCR Value
+          Color: 204; 51; 204 # Pinkish color
+          Scale: 1
+          Value: true # Enable position covariance visualization
+          Value: false # This second Value: false likely a typo in OCR, assuming Position cov true
+        Value: false # Enable overall covariance visualization (seems disabled in OCR)
+      Enabled: true # Enable Odometry display
+      Keep: 100
+      Name: Odometry
+      Position Tolerance: 0.10000000149011612 # OCR value
+      Shape:
+        Alpha: 1
+        Axes Length: 1
+        Axes Radius: 0.10000000149011612 # OCR value
+        Color: 255; 25; 0 # Reddish color
+        Head Length: 0.30000001192092896 # OCR value
+        Head Radius: 0.10000000149011612 # OCR value
+        Shaft Length: 1
+        Shaft Radius: 0.05000000074505806 # OCR value
+        Value: Arrow # Display as an arrow
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /odom # Standard odometry topic
+      Value: true
+    - Alpha: 1
+      Class: rviz_default_plugins/Map
+      Color Scheme: map # Use standard map color scheme
+      Draw Behind: false
+      Enabled: true
+      Name: Map
+      Topic:
+        Depth: 7 # OCR value
+        Durability Policy: Volatile # Transient Local might be better for maps
+        History Policy: Keep Last
+        Reliability Policy: Reliable # Use Reliable for maps
+        Value: /map # Standard map topic
+      Update Topic:
+         Depth: 7 # OCR value
+         Durability Policy: Volatile
+         History Policy: Keep Last
+         Reliability Policy: Best Effort # Updates can be Best Effort
+         Value: /map_updates # Standard map updates topic
+      Use Timestamp: false
+      Value: true
+    - Class: rviz_common/Group # Group for PointCloud2 from Cartographer
+      Displays:
+      - Alpha: 1
+        Autocompute Intensity Bounds: true
+        Autocompute Value Bounds:
+          Max Value: 0.18203988671302795 # OCR value
+          Min Value: 0.18195410072803497 # OCR value
+          Value: true
+        Axis: Z
+        Channel Name: intensity
+        Class: rviz_default_plugins/PointCloud2
+        Color: 0; 255; 0 # Green color
+        Color Transformer: FlatColor # Use flat color
+        Decay Time: 0
+        Enabled: true
+        Invert Rainbow: false
+        Max Color: 255; 255; 255
+        Max Intensity: 4096 # Default value
+        Min Color: 0; 0; 0
+        Min Intensity: 0 # Default value
+        Name: scan_matched_points2
+        Position Transformer: XYZ
+        Selectable: true
+        Size (Pixels): 3
+        Size (m): 0.009999999776482582 # OCR value
+        Style: Points
+        Topic:
+          Depth: 5
+          Durability Policy: Volatile
+          History Policy: Keep Last
+          Reliability Policy: Reliable
+          Value: /scan_matched_points2 # Cartographer specific topic
+        Use Fixed Frame: true
+        Use rainbow: true
+        Value: true
+      Enabled: true
+      Name: Scan Matched Points
+    - Class: rviz_default_plugins/MarkerArray # Trajectories
+      Enabled: false # Disabled in OCR
+      Marker Topic: /trajectory_node_list # Topic name from OCR
+      Name: Trajectories
+      Namespaces: {} # Show all namespaces by default
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+      Value: false # Disabled in OCR
+    - Class: rviz_default_plugins/MarkerArray # Constraints
+      Enabled: false # Disabled in OCR
+      Marker Topic: /constraint_list # Topic name from OCR
+      Name: Constraints
+      Namespaces: {}
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+      Value: false # Disabled in OCR
+    - Class: rviz_default_plugins/MarkerArray # Landmark Poses
+      Enabled: false # Disabled in OCR
+      Marker Topic: /landmark_poses_list # Topic name from OCR
+      Name: Landmark Poses
+      Namespaces: {}
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+      Value: false # Disabled in OCR
+  Enabled: true
+  Global Options:
+    Background Color: 48; 48; 48
+    Fixed Frame: map # Use map frame for Cartographer
+    Frame Rate: 30
+  Name: root # Root visualization manager name
+  Tools:
+    - Class: rviz_default_plugins/MoveCamera
+    - Class: rviz_default_plugins/Select
+    - Class: rviz_default_plugins/FocusCamera
+    - Class: rviz_default_plugins/Measure
+      Line color: 128; 128; 0
+    - Class: rviz_default_plugins/SetGoal # Nav2 goal tool might be needed instead
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /move_base_simple/goal # This is ROS 1 style, might need adjustment for Nav2
+    - Class: rviz_default_plugins/PublishPoint
+      Single click: true
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /clicked_point
+    - Class: rviz_default_plugins/SetInitialPose
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: initialpose # Standard topic for initial pose
+  Transformation:
+    Current:
+      Class: rviz_default_plugins/TF
+      Value: true
+  Value: true
+  Views:
+    Current:
+      Class: rviz_default_plugins/Orbit
+      Distance: 6.2725830078125 # OCR value
+      Enable Stereo Rendering:
+        Stereo Eye Separation: 0.05999999865889549 # OCR value
+        Stereo Focal Distance: 1
+        Swap Stereo Eyes: false
+        Value: false
+      Focal Point:
+        X: 1.4347907304763794 # OCR value
+        Y: 0.42844799160957336 # OCR value
+        Z: 0.801936149597168 # OCR value
+      Focal Shape Fixed Size: true
+      Focal Shape Size: 0.05000000074505806 # OCR value
+      Invert Z Axis: false
+      Name: Current View
+      Near Clip Distance: 0.009999999776482582 # OCR value
+      Pitch: 0.17479735612869263 # OCR value
+      Target Frame: <Fixed Frame>
+      Value: Orbit (rviz)
+      Yaw: 3.795415163040161 # OCR value
+    Saved: ~ # Indicates no saved view, use current
+Window Geometry:
+  Displays:
+    collapsed: false
+  Height: 1007
+  Hide Left Dock: false
+  Hide Right Dock: true
+  QMainWindow State: 000000ff00000000fd00000004000000000000020d00000340fc0200000008fb0000001200530065006c0065006300740069006f006e00000001e10000009b000000e300fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001df00000185000000a3fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb000000100044006900730070006c006100790073010000008300000340000001f300fffffffb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261000000010000010f000002f4fc0200000003fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000000a00560069006500770073000000003d000002f40000017100fffffffb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000490000000a9fc0100000001fb0000000a00560069006500770073030000004e00000080000002e10000019700000003000004420000003efc0100000002fb0000000800540069006d00650100000000000004420000000000000000fb0000000800540069006d00650100000000000004500000000000000000000005630000034000000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  Selection:
+    collapsed: false
+  Tool Properties:
+    collapsed: false
+  Views:
+    collapsed: true
+  Width: 1920
+  X: 0
+  Y: 0
